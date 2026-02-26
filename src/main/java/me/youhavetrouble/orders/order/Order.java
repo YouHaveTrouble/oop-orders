@@ -36,7 +36,12 @@ public class Order {
         return getPrice(null);
     }
 
-    public void printCategorizedReceipt() {
+    public double getPricePerGroupPerson(int groupSize) {
+        if (groupSize <= 0) throw new IllegalArgumentException("Group size must be greater than 0");
+        return (double) getPrice() / groupSize;
+    }
+
+    public void printCategorizedReceipt(int groupSize) {
         System.out.println("------- Receipt -------");
         for (OrderItem.Type type : OrderItem.Type.values()) {
             int price = getPrice(type);
@@ -44,6 +49,13 @@ public class Order {
             System.out.println(type.name() + ": " + price);
         }
         System.out.println("Total: " + getPrice());
+        if (groupSize > 1) {
+            System.out.printf("Price per person (group size %s): %.2f\n", groupSize, getPricePerGroupPerson(groupSize));
+        }
+    }
+
+    public void printCategorizedReceipt() {
+        printCategorizedReceipt(1);
     }
 
 }

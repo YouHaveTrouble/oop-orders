@@ -23,8 +23,8 @@ public class Main {
 
         Order sallyOrder = new Order(sallyBurger, sallyBurger2, sallyFries, sallyDrink);
 
-        ronOrder.printCategorizedReceipt();
-        sallyOrder.printCategorizedReceipt();
+        ronOrder.printCategorizedReceipt(5);
+        sallyOrder.printCategorizedReceipt(6);
     }
 
 }
